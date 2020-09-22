@@ -39,6 +39,7 @@ INSTALLED_APPS = [
 
     # Django-Rest-Framework
     'rest_framework',
+
     # My Apps
     'api.medicine',
     'api.pet',
