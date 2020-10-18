@@ -23,4 +23,4 @@ class VaccineSchedule(models.Model):
     cycle = models.CharField(max_length=1, choices=CYCLE_CHOICES, default='D')
 
     def __str__(self):
-        return f'{self.vaccine.vaccine} - {self.schedule}'
+        return f'{self.vaccine} - {self.schedule}'
