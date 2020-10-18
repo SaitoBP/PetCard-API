@@ -10,6 +10,13 @@ class MedicationScheduleSerializer(serializers.ModelSerializer):
 
 
 class MedicationSerializer(serializers.ModelSerializer):
+
+    medication_schedule = serializers.HyperlinkedRelatedField(
+        many=True,
+        read_only=True,
+        view_name='Medication Schedule-detail'
+    )
+
     class Meta:
         model = Medication
-        fields = '__all__'
+        fields = ['id', 'medicine', 'description', 'medication_schedule']
