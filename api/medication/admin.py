@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from api.medication.models import Medication, MedicationSchedule
+
+admin.site.register(Medication)
+admin.site.register(MedicationSchedule)
