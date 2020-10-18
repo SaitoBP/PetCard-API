@@ -16,6 +16,11 @@ from api.medication.viewsets import (
     MedicationViewSet
 )
 
+from api.vaccine.viewsets import (
+    VaccineViewSet,
+    VaccineScheduleViewSet
+)
+
 router = routers.DefaultRouter()
 
 router.register('specie', SpecieViewSet, basename='Specie')
@@ -24,6 +29,9 @@ router.register('pet', PetViewSet, basename='Pet')
 
 router.register('medication_schedule', MedicationScheduleViewSet, basename='Medication Schedule')
 router.register('medication', MedicationViewSet, basename='Medication')
+
+router.register('vaccine', VaccineViewSet, basename='Vaccine')
+router.register('vaccine_schedule', VaccineScheduleViewSet, basename='Vaccine Schedule')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
