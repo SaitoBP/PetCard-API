@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
     # My Apps
-    'api.medicine',
+    'api.medication',
     'api.pet',
     'api.vaccine'
 
