@@ -3,6 +3,14 @@ from django.db import models
 from dateutil.relativedelta import relativedelta
 
 
+class Medication(models.Model):
+    medicine = models.CharField(max_length=255)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.medicine
+
+
 class MedicationSchedule(models.Model):
     CYCLE_CHOICES = [
         ('D', 'DAILY'),
@@ -44,18 +52,16 @@ class MedicationSchedule(models.Model):
             #     self.save()
 
         if self.schedule >= next_schedule:
+            # Reset status back to False
             self.status = False
+
+            # Change the schedule date to the next_schedule so the cycle can continue
+            self.schedule = next_schedule
+
+            # Save changes
             self.save()
 
         return self.status
 
     def __str__(self):
         return f"{self.medication} - {self.schedule}"
-
-
-class Medication(models.Model):
-    medicine = models.CharField(max_length=255)
-    description = models.TextField()
-
-    def __str__(self):
-        return self.medicine
