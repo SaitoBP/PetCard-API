@@ -4,13 +4,14 @@ from api.medication.models import MedicationSchedule, Medication
 
 
 class MedicationScheduleSerializer(serializers.ModelSerializer):
+    status = serializers.BooleanField(source='validate_status')
+
     class Meta:
         model = MedicationSchedule
-        fields = '__all__'
+        fields = ['medication', 'schedule', 'cycle', 'status']
 
 
 class MedicationSerializer(serializers.ModelSerializer):
-
     medication_schedule = serializers.HyperlinkedRelatedField(
         many=True,
         read_only=True,
