@@ -1,5 +1,6 @@
 from django.db import models
 
+from datetime import datetime, timezone
 from dateutil.relativedelta import relativedelta
 
 
@@ -27,7 +28,16 @@ class MedicationSchedule(models.Model):
 
     @property
     def validate_status(self):
-        next_schedule = None
+
+        """
+        Auto 'today' variable
+        """
+        # today = datetime.now()
+
+        """
+        Debug 'today' variable
+        """
+        today = datetime(2020, 10, 21, tzinfo=timezone.utc)
 
         if self.cycle == 'D':
             next_schedule = self.schedule + relativedelta(days=+1)
@@ -41,17 +51,7 @@ class MedicationSchedule(models.Model):
         else:
             next_schedule = self.schedule + relativedelta(years=+1)
 
-            """
-            Debug example
-            """
-            # schedule = 20
-            # next_schedule = schedule + 1
-
-            # if schedule >= next_schedule:
-            #     self.status = False
-            #     self.save()
-
-        if self.schedule >= next_schedule:
+        if today >= self.schedule:
             # Reset status back to False
             self.status = False
 
