@@ -17,6 +17,9 @@ class VaccineSerializer(serializers.ModelSerializer):
 
 
 class VaccineScheduleSerializer(serializers.ModelSerializer):
+
+    status = serializers.BooleanField(source='validate_status')
+
     class Meta:
         model = VaccineSchedule
-        fields = '__all__'
+        fields = ['id', 'vaccine', 'schedule', 'cycle', 'status']
