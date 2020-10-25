@@ -1,5 +1,7 @@
 from django.db import models
 
+from api.pet.models import Pet
+
 from datetime import datetime, timezone
 from dateutil.relativedelta import relativedelta
 
@@ -7,6 +9,8 @@ from dateutil.relativedelta import relativedelta
 class Medication(models.Model):
     medicine = models.CharField(max_length=255)
     description = models.TextField()
+
+    pet = models.ForeignKey(Pet, related_name='pet_medication', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.medicine
